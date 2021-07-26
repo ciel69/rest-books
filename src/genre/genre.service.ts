@@ -30,6 +30,30 @@ export class GenreService {
       id: 6,
       name: 'очерк',
     },
+    {
+      id: 7,
+      name: 'ода',
+    },
+    {
+      id: 8,
+      name: 'лирическое стихотворение',
+    },
+    {
+      id: 9,
+      name: 'элегия',
+    },
+    {
+      id: 9,
+      name: 'эпиграмма',
+    },
+    {
+      id: 10,
+      name: 'комедия',
+    },
+    {
+      id: 11,
+      name: 'трагедия',
+    },
   ];
 
   create(createGenreDto: CreateGenreDto) {
@@ -40,8 +64,12 @@ export class GenreService {
     return this.genre;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} genre`;
+  findByIds(ids: number[]): Genre[] {
+    return this.genre.filter((item) => ids.includes(item.id));
+  }
+
+  findOne(id: number): Genre[] {
+    return this.genre.filter((item) => item.id === id);
   }
 
   update(id: number, updateGenreDto: UpdateGenreDto) {

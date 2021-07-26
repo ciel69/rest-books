@@ -5,13 +5,14 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
-} from '@nestjs/common';
+  Delete, Req, Query
+} from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './entities/book.entity';
+import { FilterBookDto } from './dto/filter-book.dto';
 
 @ApiTags('books')
 @Controller('books')
@@ -34,8 +35,8 @@ export class BooksController {
     type: Book,
     isArray: true,
   })
-  findAll(): Book[] {
-    return this.booksService.findAll();
+  findAll(@Query() filterBookDto: FilterBookDto): Book[] {
+    return this.booksService.findAll(filterBookDto);
   }
 
   @Get(':id')
