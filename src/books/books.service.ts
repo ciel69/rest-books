@@ -91,11 +91,24 @@ export class BooksService {
 
   update(id: number, updateBookDto: UpdateBookDto) {
     const book = this.books.get(id);
+    if (!book) {
+      throw new HttpException(
+        'Нет такой книги',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
+    }
     this.books.set(id, { ...book, ...updateBookDto });
     return `This action updates a #${id} book`;
   }
 
   remove(id: number) {
+    const book = this.books.get(id);
+    if (!book) {
+      throw new HttpException(
+        'Нет такой книги',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
+    }
     this.books.delete(id);
     return `This action removes a #${id} book`;
   }
