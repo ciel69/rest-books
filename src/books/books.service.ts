@@ -11,8 +11,7 @@ import * as isEmpty from 'lodash/isEmpty';
 export class BooksService {
   books: Map<any, Book> = new Map();
 
-  constructor(public genreService: GenreService) {
-  }
+  constructor(public genreService: GenreService) {}
 
   create(createBookDto: CreateBookDto) {
     const { error } = schemaBook.validate(createBookDto);
@@ -35,6 +34,7 @@ export class BooksService {
     book.author = newBook.author;
     book.name = newBook.name;
     book.date = newBook.date;
+    book.description = newBook.description;
     book.genre = genre;
 
     this.books.set(book.id, book);
@@ -97,7 +97,22 @@ export class BooksService {
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
     }
-    this.books.set(id, { ...book, ...updateBookDto });
+    const genre = updateBookDto.genreIds
+      ? this.genreService.findByIds(updateBookDto.genreIds)
+      : [];
+
+    delete updateBookDto.genreIds;
+
+    let newBook = { ...book, ...updateBookDto };
+
+    if (genre.length > 0) {
+      newBook = {
+        ...newBook,
+        genre,
+      };
+    }
+
+    this.books.set(id, newBook);
     return `This action updates a #${id} book`;
   }
 

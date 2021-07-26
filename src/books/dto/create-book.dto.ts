@@ -37,4 +37,6 @@ export const schemaBook = Joi.object({
   date: Joi.number().required(),
 
   genreIds: Joi.any().required(),
+
+  description: Joi.string().allow(null, ''),
 });
