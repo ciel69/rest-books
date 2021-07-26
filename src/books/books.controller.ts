@@ -5,8 +5,9 @@ import {
   Body,
   Patch,
   Param,
-  Delete, Req, Query
-} from "@nestjs/common";
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
