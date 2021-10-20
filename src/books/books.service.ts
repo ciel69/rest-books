@@ -28,6 +28,7 @@ export class BooksService {
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
     }
+
     const newBook = plainToClass(CreateBookDto, createBookDto);
     const book = new Book();
     book.id = newBook.id;
