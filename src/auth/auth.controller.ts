@@ -20,6 +20,8 @@ import { Book } from '../books/entities/book.entity';
 import { FilterBookDto } from '../books/dto/filter-book.dto';
 import { UpdateBookDto } from '../books/dto/update-book.dto';
 import { BooksService } from '../books/books.service';
+import { Genre } from '../genre/entities/genre.entity';
+import { GenreService } from '../genre/genre.service';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -27,6 +29,7 @@ export class AuthController {
   constructor(
     private authService: AuthService,
     private readonly booksService: BooksService,
+    private readonly genreService: GenreService,
   ) {}
 
   @Post('/login')
@@ -88,5 +91,20 @@ export class AuthController {
   @ApiOperation({ summary: 'Удаление книги' })
   remove(@Param('id') id: number) {
     return this.booksService.remove(+id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/genre')
+  @ApiOperation({
+    summary: 'Список жанров',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'The found record.',
+    type: Genre,
+    isArray: true,
+  })
+  findAllGenre(): Genre[] {
+    return this.genreService.findAll();
   }
 }
