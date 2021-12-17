@@ -18,7 +18,7 @@ import { BooksService } from '../books/books.service';
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {
-        expiresIn: 3600,
+        expiresIn: '10m',
       },
     }),
   ],
