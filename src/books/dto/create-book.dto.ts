@@ -5,7 +5,7 @@ import * as uniqueId from 'lodash/uniqueId';
 
 export class CreateBookDto {
   @Expose()
-  @Transform(() => +uniqueId(), { toClassOnly: true })
+  @Transform(({ value }) => value || +uniqueId(), { toClassOnly: true })
   @ApiProperty({ required: true })
   id: number;
 
@@ -31,13 +31,10 @@ export class CreateBookDto {
 }
 
 export const schemaBook = Joi.object({
+  id: Joi.number().required(),
   name: Joi.string().required(),
-
   author: Joi.string().required(),
-
   year: Joi.number().required(),
-
   genreIds: Joi.any().required(),
-
   description: Joi.string().allow(null, ''),
 });
