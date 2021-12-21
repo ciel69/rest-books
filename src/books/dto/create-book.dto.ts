@@ -6,6 +6,7 @@ import * as uniqueId from 'lodash/uniqueId';
 export class CreateBookDto {
   @Expose()
   @Transform(() => +uniqueId(), { toClassOnly: true })
+  @ApiProperty({ required: true })
   id: number;
 
   @ApiProperty({ description: 'Название книги', required: true })
