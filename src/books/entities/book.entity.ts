@@ -13,7 +13,7 @@ export class Book {
   author: string;
 
   @ApiProperty({ description: 'Год в формате "yyyy"', required: true })
-  date: number;
+  year: number;
 
   @Expose()
   @ApiProperty({

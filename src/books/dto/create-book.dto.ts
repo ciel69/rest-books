@@ -19,7 +19,7 @@ export class CreateBookDto {
   description: string;
 
   @ApiProperty({ description: 'Год в формате "yyyy"', required: true })
-  date: number;
+  year: number;
 
   @ApiProperty({
     description: 'Список id жанров',

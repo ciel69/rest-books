@@ -16,11 +16,11 @@ export class FilterBookDto {
 
   @ApiProperty({ description: 'Год от, в формате "yyyy"', required: false })
   @Transform(({ value }) => Number(value) || null, { toClassOnly: true })
-  dateFrom: number;
+  yearFrom: number;
 
   @ApiProperty({ description: 'Год до, в формате "yyyy"', required: false })
   @Transform(({ value }) => Number(value) || null, { toClassOnly: true })
-  dateTo: number;
+  yearTo: number;
 
   @Expose()
   @Transform(

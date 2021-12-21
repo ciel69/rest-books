@@ -34,7 +34,7 @@ export class BooksService {
     book.id = newBook.id;
     book.author = newBook.author;
     book.name = newBook.name;
-    book.date = newBook.date;
+    book.year = newBook.year;
     book.description = newBook.description;
     book.genre = genre;
 
@@ -67,8 +67,8 @@ export class BooksService {
 
   filterDate(filter: FilterBookDto, book: Book): boolean {
     return (
-      (filter.dateFrom ? filter.dateFrom <= book.date : true) &&
-      (filter.dateTo ? filter.dateTo >= book.date : true)
+      (filter.yearFrom ? filter.yearFrom <= book.year : true) &&
+      (filter.yearTo ? filter.yearTo >= book.year : true)
     );
   }
 
