@@ -43,15 +43,15 @@ export class GenreService {
       name: 'элегия',
     },
     {
-      id: 9,
+      id: 10,
       name: 'эпиграмма',
     },
     {
-      id: 10,
+      id: 11,
       name: 'комедия',
     },
     {
-      id: 11,
+      id: 12,
       name: 'трагедия',
     },
   ];
