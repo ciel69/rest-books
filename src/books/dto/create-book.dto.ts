@@ -26,7 +26,7 @@ export class CreateBookDto {
     type: 'number',
     isArray: true,
   })
-  genreIds: number[];
+  genreIds?: number[];
 }
 
 export const schemaBook = Joi.object({

@@ -3,7 +3,7 @@ import { Expose } from 'class-transformer';
 import { Genre } from '../../genre/entities/genre.entity';
 
 export class Book {
-  @ApiProperty({ required: false })
+  @ApiProperty({ required: true })
   id: number;
 
   @ApiProperty({ description: 'Название книги', required: true })
