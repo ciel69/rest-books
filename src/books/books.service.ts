@@ -21,8 +21,8 @@ export class BooksService {
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
     }
-    const genre = this.genreService.findByIds(createBookDto.genreIds);
-    if (!genre.length) {
+    const genres = this.genreService.findByIds(createBookDto.genreIds);
+    if (!genres.length) {
       throw new HttpException(
         'Жанр не заполнен или нет такого жанра',
         HttpStatus.UNPROCESSABLE_ENTITY,
@@ -36,7 +36,7 @@ export class BooksService {
     book.name = newBook.name;
     book.year = newBook.year;
     book.description = newBook.description;
-    book.genre = genre;
+    book.genres = genres;
 
     this.books.set(book.id, book);
     return 'This action adds a new book';
@@ -61,7 +61,7 @@ export class BooksService {
 
   filterGenre(filter: FilterBookDto, book: Book): boolean {
     return filter.genreIds.length > 0
-      ? !!book.genre.find((item) => filter.genreIds.includes(item.id))
+      ? !!book.genres.find((item) => filter.genreIds.includes(item.id))
       : true;
   }
 
@@ -98,7 +98,7 @@ export class BooksService {
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
     }
-    const genre = updateBookDto.genreIds
+    const genres = updateBookDto.genreIds
       ? this.genreService.findByIds(updateBookDto.genreIds)
       : [];
 
@@ -106,10 +106,10 @@ export class BooksService {
 
     let newBook = { ...book, ...updateBookDto };
 
-    if (genre.length > 0) {
+    if (genres.length > 0) {
       newBook = {
         ...newBook,
-        genre,
+        genres,
       };
     }
 

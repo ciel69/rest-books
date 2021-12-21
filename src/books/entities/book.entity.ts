@@ -22,7 +22,7 @@ export class Book {
     isArray: true,
     required: true,
   })
-  genre: Genre[];
+  genres: Genre[];
 
   @ApiProperty({ required: false })
   description?: string;
