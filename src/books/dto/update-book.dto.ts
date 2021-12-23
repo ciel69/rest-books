@@ -1,6 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateBookDto {
+  @ApiProperty({ required: false })
+  id: number;
+
   @ApiProperty({ description: 'Название книги', required: false })
   name: string;
 
@@ -11,7 +14,7 @@ export class UpdateBookDto {
   description: string;
 
   @ApiProperty({ description: 'Год в формате "yyyy"', required: false })
-  date: number;
+  year: number;
 
   @ApiProperty({
     description: 'Список id жанров',
